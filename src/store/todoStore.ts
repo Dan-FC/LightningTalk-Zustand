@@ -1,17 +1,17 @@
 import { create } from "zustand";
 import { v4 as uuidv4 } from "uuid";
 
-// Define el tipo de un Todo
+// ! Podemos crear la configuración del estado global en un solo archivo
+
 type Todo = {
   id: string;
   text: string;
   favorite: boolean;
 };
 
-// Define los posibles filtros
 type Filter = "all" | "favorites";
 
-// Define la estructura del store de Zustand
+// * Define la estructura del store de Zustand
 type TodoStore = {
   todos: Todo[];
   filter: Filter;
@@ -21,24 +21,24 @@ type TodoStore = {
   removeTodo: (id: string) => void;
 };
 
-// Crea el store de Zustand para manejar el estado global de las tareas
+// * Crea el store de Zustand para manejar el estado global de las tareas
 export const useTodoStore = create<TodoStore>((set, get) => ({
-  todos: [], // Estado inicial: lista vacía de tareas
-  filter: "all", // Estado inicial: mostrar todas las tareas
+  todos: [], // * Estado inicial: lista vacía de tareas
+  filter: "all", // * Estado inicial: mostrar todas las tareas
 
-  // Agrega una nueva tarea a la lista
+  // * Agrega una nueva tarea a la lista
   addTodo: (text) => {
     const newTodo: Todo = {
-      id: uuidv4(), // Genera un ID único
+      id: uuidv4(), 
       text,
-      favorite: false, // Por defecto no es favorito
+      favorite: false, // ! Por defecto no es favorito
     };
     set((state) => ({
-      todos: [...state.todos, newTodo], // Agrega la nueva tarea al estado
+      todos: [...state.todos, newTodo], // * Agrega la nueva tarea al estado, creando un nuevo array
     }));
   },
 
-  // Cambia el estado de favorito de una tarea
+  // * Cambia el estado de favorito de una tarea
   toggleFavorite: (id) =>
     set((state) => ({
       todos: state.todos.map((todo) =>
@@ -46,10 +46,10 @@ export const useTodoStore = create<TodoStore>((set, get) => ({
       ),
     })),
 
-  // Cambia el filtro actual (todas o solo favoritas)
+  // * Cambia el filtro actual (todas o solo favoritas)
   setFilter: (filter) => set({ filter }),
 
-  // Elimina una tarea por su ID
+  // * Elimina una tarea por su ID
   removeTodo: (id) =>
     set((state) => ({
       todos: state.todos.filter((todo) => todo.id !== id),

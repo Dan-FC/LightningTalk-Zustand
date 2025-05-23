@@ -3,6 +3,7 @@ import { useTodoStore } from "@/store/todoStore";
 import TodoItem from "./TodoItem";
 
 export default function TodoList() {
+  // * Obtenemos los estados individualmente, sin arrastrar información extra como las acciones
   const todos = useTodoStore((state) => state.todos);
   const filter = useTodoStore((state) => state.filter);
 

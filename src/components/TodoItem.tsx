@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function TodoItem({ id, text, favorite }: Props) {
+  // * Obtenemos las acciones para afectar los estados
   const toggleFavorite = useTodoStore((state) => state.toggleFavorite);
   const removeTodo = useTodoStore((state) => state.removeTodo);
 
