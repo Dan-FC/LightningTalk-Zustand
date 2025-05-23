@@ -14,8 +14,8 @@ export default function Home() {
           <Image
             src="/zustand.jpg"
             alt="Zustand Image"
-            width={800} // Cambia aquí el ancho
-            height={200} // Cambia aquí el alto
+            width={800}
+            height={200}
             className="rounded-lg shadow-lg"
           />
         </div>

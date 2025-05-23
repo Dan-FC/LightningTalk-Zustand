@@ -2,10 +2,14 @@
 import { useState } from "react";
 import { useTodoStore } from "@/store/todoStore";
 
+// Componente para agregar nuevas tareas al store global
 export default function TodoForm() {
+  // Estado local para controlar el texto del input
   const [text, setText] = useState("");
+  // Obtiene la función para agregar tareas desde el store
   const addTodo = useTodoStore((state) => state.addTodo);
 
+  // Maneja el envío del formulario: agrega la tarea y limpia el input
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (text.trim()) {
@@ -14,6 +18,7 @@ export default function TodoForm() {
     }
   };
 
+  // Renderiza el formulario con un input y un botón para agregar tareas
   return (
     <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
       <input
@@ -32,3 +37,4 @@ export default function TodoForm() {
     </form>
   );
 }
+// Este componente permite a los usuarios agregar nuevas tareas al store global de Zustand.
